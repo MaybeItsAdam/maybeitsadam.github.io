@@ -1,1 +1,0 @@
-import{a as e,t as p}from"../chunks/disclose-version.CwNlqkvO.js";import"../chunks/legacy.DQlHneUy.js";var s=p('<div class="svelte-10bntx1"><p class="svelte-10bntx1">MaybeItsAdam</p></div>');function r(t){var a=s();e(t,a)}export{r as component};
