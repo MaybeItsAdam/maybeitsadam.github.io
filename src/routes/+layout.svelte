@@ -10,3 +10,9 @@
 </nav>
 
 {@render children()}
+
+<style>
+    nav {
+        z-index: 1100;
+    }
+</style>
