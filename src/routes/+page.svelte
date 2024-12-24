@@ -1,6 +1,7 @@
 <div><p>MaybeItsAdam</p></div>
 
 <style>
+    @import url("https://fonts.cdnfonts.com/css/cascadia-code");
     div {
         display: flex;
         justify-content: center;
@@ -9,7 +10,7 @@
         margin: 0;
     }
     p {
-        font-family: "Arial, Helvetica, sans-serif";
+        font-family: "Cascadia Code", sans-serif;
         font-size: 7em;
     }
 </style>
