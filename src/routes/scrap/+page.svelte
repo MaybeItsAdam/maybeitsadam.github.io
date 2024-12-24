@@ -6,5 +6,6 @@
     }
 </script>
 
+<br />
 <h>{count}</h>
 <button on:click={inc}>add two</button>

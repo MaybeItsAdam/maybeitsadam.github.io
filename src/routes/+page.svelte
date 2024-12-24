@@ -6,6 +6,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
+        margin: 0;
     }
     p {
         font-family: "Arial, Helvetica, sans-serif";
