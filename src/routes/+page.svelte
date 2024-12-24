@@ -1,2 +1,12 @@
-<h1>home</h1>
-<p>there will be stuff here</p>
+<div><p>MaybeItsAdam</p></div>
+
+<style>
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    p {
+        font-family: "Arial, Helvetica, sans-serif";
+    }
+</style>
