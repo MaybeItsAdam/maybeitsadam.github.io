@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+
     let names: string[] = []; // Array to hold the names
     let currentIndex: number = 0; // Index for the currently displayed name
     let currentName: string = ""; // Store the name that is displayed
@@ -34,14 +35,8 @@
 </script>
 
 <div class="carousel-wrapper">
-    <!-- Render the current name with sliding and fading transitions -->
-    <div
-        class="name enter"
-        transition:fly={{ y: 50 }}
-        transition:fade={{ duration: 300 }}
-    >
-        {currentName}
-    </div>
+    <!-- The name element will slide in and fade out -->
+    <div class="name">{currentName}</div>
 </div>
 
 <style>
@@ -63,20 +58,33 @@
         color: black;
         opacity: 0; /* Start with opacity 0 */
         transform: translateY(100%); /* Start below the viewport */
-        transition:
-            transform 0.6s ease,
-            opacity 0.6s ease;
+        animation: slideFade 1s ease-in-out forwards; /* Apply the keyframe animation */
     }
 
-    /* Entering animation for the name */
-    .name.enter {
-        opacity: 1;
-        transform: translateY(0); /* Slide up into view */
+    /* Keyframe animation for sliding and fading */
+    @keyframes slideFade {
+        0% {
+            opacity: 0;
+            transform: translateY(100%); /* Start below */
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(0); /* Slide into view */
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-100%); /* Slide out upwards */
+        }
     }
 
-    /* Exiting animation for the name */
-    .name.exit {
-        opacity: 0;
-        transform: translateY(-100%); /* Slide out upwards */
+    @keyframes slideFadeExit {
+        0% {
+            opacity: 1;
+            transform: translateY(0); /* Start at the current position */
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-100%); /* Slide out upwards */
+        }
     }
 </style>
