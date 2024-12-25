@@ -28,4 +28,10 @@
     });
 </script>
 
-<div>{names[currentIndex]}</div>
+<div id="carousel">{names[currentIndex]}</div>
+
+<style>
+    #carousel {
+        display: inline;
+    }
+</style>
