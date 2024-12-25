@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     import { onMount } from "svelte";
 
-    let names = []; // Initialize an empty array for names
+    let names: string[] = []; // Initialize an empty array for names
     let currentIndex = 0; // Track the current name
     let containerHeight = 50; // Height for each name item (you can adjust it)
 
