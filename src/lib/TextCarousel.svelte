@@ -48,15 +48,15 @@
     /* Carousel wrapper */
     .carousel-wrapper {
         display: inline;
-        position: relative;
+        /* position: relative; */
         width: 100%; /* Adjust width based on the container */
         overflow: hidden;
     }
 
     /* The name element */
     .name {
-        position: absolute;
-        width: 100%;
+        /* position: absolute; */
+        display: inline;
         text-align: center;
         opacity: 0; /* Start with opacity 0 */
         transform: translateY(100%); /* Start below the viewport */
