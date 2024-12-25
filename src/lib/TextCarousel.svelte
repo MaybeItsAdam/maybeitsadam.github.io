@@ -55,7 +55,7 @@
 
     /* The name element */
     .name {
-        /* position: absolute; */
+        position: absolute;
         display: inline;
         text-align: center;
         opacity: 0; /* Start with opacity 0 */
