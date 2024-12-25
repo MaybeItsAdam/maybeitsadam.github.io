@@ -48,7 +48,7 @@
     /* Carousel wrapper */
     .carousel-wrapper {
         display: inline;
-        /* position: relative; */
+        position: relative;
         width: 100%; /* Adjust width based on the container */
         overflow: hidden;
     }
