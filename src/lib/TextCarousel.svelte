@@ -4,11 +4,16 @@
     let names: string[] = []; // Array to hold the names
     let currentIndex: number = 0; // Index for the currently displayed name
     let currentName: string = ""; // Store the name that is displayed
+    let isExiting: boolean = false; // Flag to track the exit state
 
     // Function to transition to the next name
     function nextName(): void {
-        currentIndex = (currentIndex + 1) % names.length; // Loop back to the first name when at the end
-        currentName = names[currentIndex];
+        isExiting = true; // Trigger the exit animation
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % names.length; // Loop back to the first name when at the end
+            currentName = names[currentIndex];
+            isExiting = false; // Reset exit flag
+        }, 1000); // Wait for the exit animation to complete (1s duration)
     }
 
     // Fetch names from the text file
@@ -36,7 +41,7 @@
 
 <div class="carousel-wrapper">
     <!-- The name element will slide in and fade out -->
-    <div class="name">{currentName}</div>
+    <div class="name {isExiting ? 'name-exiting' : ''}">{currentName}</div>
 </div>
 
 <style>
@@ -53,16 +58,13 @@
         position: absolute;
         width: 100%;
         text-align: center;
-        font-size: 1.5em;
-        font-weight: bold;
-        color: black;
         opacity: 0; /* Start with opacity 0 */
         transform: translateY(100%); /* Start below the viewport */
-        animation: slideFade 1s ease-in-out forwards; /* Apply the keyframe animation */
+        animation: slideFadeIn 1s ease-in-out forwards; /* Apply the keyframe animation */
     }
 
-    /* Keyframe animation for sliding and fading */
-    @keyframes slideFade {
+    /* Keyframe animation for sliding in and fading in */
+    @keyframes slideFadeIn {
         0% {
             opacity: 0;
             transform: translateY(100%); /* Start below */
@@ -72,19 +74,25 @@
             transform: translateY(0); /* Slide into view */
         }
         100% {
-            opacity: 0;
-            transform: translateY(-100%); /* Slide out upwards */
+            opacity: 1;
+            transform: translateY(0); /* Stay in place */
         }
     }
 
-    @keyframes slideFadeExit {
+    /* Keyframe animation for sliding out and fading out */
+    @keyframes slideFadeOut {
         0% {
             opacity: 1;
-            transform: translateY(0); /* Start at the current position */
+            transform: translateY(0); /* Stay in place */
         }
         100% {
             opacity: 0;
             transform: translateY(-100%); /* Slide out upwards */
         }
+    }
+
+    /* Add the exit animation when leaving */
+    .name-exiting {
+        animation: slideFadeOut 1s ease-in-out forwards;
     }
 </style>
