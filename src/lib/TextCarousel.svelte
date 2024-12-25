@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-
     let names: string[] = []; // Array to hold the names
     let currentIndex: number = 0; // Index for the currently displayed name
     let currentName: string = ""; // Store the name that is displayed
@@ -14,7 +13,7 @@
     // Fetch names from the text file
     async function loadNames(): Promise<void> {
         try {
-            const response = await fetch("/names.txt"); // Adjust path if necessary
+            const response = await fetch("/names.txt");
             const text = await response.text();
             names = text
                 .split("\n")
@@ -35,62 +34,49 @@
 </script>
 
 <div class="carousel-wrapper">
+    <!-- Render the current name with sliding and fading transitions -->
     <div
         class="name enter"
-        style="transition-delay: {currentIndex === 0 ? '0s' : '0.2s'}"
+        transition:fly={{ y: 50 }}
+        transition:fade={{ duration: 300 }}
     >
         {currentName}
     </div>
 </div>
 
 <style>
-    /* Root container of the name carousel */
+    /* Carousel wrapper */
     .carousel-wrapper {
         position: relative;
+        height: 2em; /* Adjust height based on the font size */
+        width: 100%; /* Adjust width based on the container */
         overflow: hidden;
-        width: 100%; /* Allow parent to control size */
-        height: 1.5em; /* Adjust based on text size */
     }
 
-    /* The name text container */
+    /* The name element */
     .name {
         position: absolute;
         width: 100%;
+        text-align: center;
         font-size: 1.5em;
         font-weight: bold;
-        text-align: center;
+        color: black;
         opacity: 0; /* Start with opacity 0 */
+        transform: translateY(100%); /* Start below the viewport */
         transition:
-            transform 0.5s ease,
-            opacity 0.5s ease;
+            transform 0.6s ease,
+            opacity 0.6s ease;
     }
 
-    /* Apply the gradient effect */
-    .name::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 1) 50%,
-            rgba(255, 255, 255, 0) 100%
-        );
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    /* Keyframe animation for sliding */
+    /* Entering animation for the name */
     .name.enter {
         opacity: 1;
-        transform: translateX(100%); /* Start from right outside */
+        transform: translateY(0); /* Slide up into view */
     }
 
+    /* Exiting animation for the name */
     .name.exit {
         opacity: 0;
-        transform: translateX(-100%); /* Slide out to the left */
+        transform: translateY(-100%); /* Slide out upwards */
     }
 </style>
