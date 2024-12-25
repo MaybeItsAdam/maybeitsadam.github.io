@@ -2,11 +2,11 @@
     import TextCarousel from "$lib/TextCarousel.svelte";
 </script>
 
-<div><p>MaybeIts<TextCarousel /></p></div>
+<div id="main"><p>MaybeIts<TextCarousel /></p></div>
 
 <style>
     @import url("https://fonts.cdnfonts.com/css/cascadia-code");
-    div {
+    #main {
         display: flex;
         justify-content: center;
         align-items: center;
