@@ -47,8 +47,8 @@
 <style>
     /* Carousel wrapper */
     .carousel-wrapper {
+        display: inline;
         position: relative;
-        height: 2em; /* Adjust height based on the font size */
         width: 100%; /* Adjust width based on the container */
         overflow: hidden;
     }
