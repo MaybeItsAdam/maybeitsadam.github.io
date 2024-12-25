@@ -28,4 +28,4 @@
     });
 </script>
 
-<p>{names[currentIndex]}</p>
+<div>{names[currentIndex]}</div>
