@@ -1,5 +1,5 @@
 <script>
-    import TextCarousel from "$lib/textCarousel.svelte";
+    import TextCarousel from "$lib/TextCarousel.svelte";
 </script>
 
 <div><p>MaybeIts<TextCarousel /></p></div>
