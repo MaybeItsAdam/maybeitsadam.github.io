@@ -1,4 +1,8 @@
-<div><p>MaybeItsAdam</p></div>
+<script>
+    import TextCarousel from "$lib/textCarousel.svelte";
+</script>
+
+<div><p>MaybeIts<TextCarousel /></p></div>
 
 <style>
     @import url("https://fonts.cdnfonts.com/css/cascadia-code");
