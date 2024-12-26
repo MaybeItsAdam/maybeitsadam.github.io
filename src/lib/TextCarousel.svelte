@@ -72,14 +72,14 @@
             to bottom,
             transparent,
             black 40%,
-            black 60%,
+            black 70%,
             transparent
         );
         -webkit-mask-image: linear-gradient(
             to bottom,
             transparent,
             black 40%,
-            black 60%,
+            black 70%,
             transparent
         );
     }
