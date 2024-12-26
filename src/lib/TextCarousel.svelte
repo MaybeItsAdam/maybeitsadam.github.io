@@ -18,6 +18,7 @@
     onMount(async () => {
         nameList = await generateNames(3);
         nameList.push(finalName);
+        await measureBoxHeight();
         startShifting(); // Call startShifting after the names are ready
     });
 
@@ -26,6 +27,20 @@
     let shiftInterval: number;
 
     let moverHeight: number;
+
+    async function measureBoxHeight() {
+        return new Promise<void>((resolve) => {
+            setTimeout(() => {
+                const mover = document.querySelector(".mover");
+                if (mover) {
+                    moverHeight = mover.getBoundingClientRect().height; // Get the height of the first .mover element
+                } else {
+                    moverHeight = 0; // Fallback height
+                }
+                resolve();
+            }, 0); // Delay to ensure the DOM is updated
+        });
+    }
 
     function startShifting() {
         shiftInterval = setInterval(() => {
@@ -37,14 +52,6 @@
             }
         }, 800);
     }
-
-    $effect(() => {
-        const mover = document.querySelector(".mover");
-        if (mover) {
-            moverHeight = mover.getBoundingClientRect().height; // Get the height of the first .mover element
-            console.log(moverHeight);
-        }
-    });
 </script>
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
