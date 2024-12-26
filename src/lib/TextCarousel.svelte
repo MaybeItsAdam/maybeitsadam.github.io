@@ -54,29 +54,31 @@
     }
 </script>
 
-<div id="cwrapper" style="--chwidth: {finalName.length}ch">
-    {#each nameList as name}
-        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
-    {/each}
+<div id="mask-wrapper">
+    <div id="cwrapper" style="--chwidth: {finalName.length}ch">
+        {#each nameList as name}
+            <div class="mover" style="--shift: {shiftVal}px">{name}</div>
+        {/each}
+    </div>
 </div>
 
 <style>
+    #mask-wrapper {
+        display: inline-block;
+        position: relative;
+        overflow: hidden; /* Allow only the content within the mask to be visible */
+        width: var(
+            --chwidth
+        ); /* Set the width according to the final name length */
+    }
+
     #cwrapper {
         display: inline-flex;
         position: relative;
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        overflow: visible;
-        width: var(--chwidth);
-        right: 100%;
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 85%,
-            transparent
-        );
+        overflow: visible; /* Allow content to overflow horizontally */
     }
 
     .mover {
@@ -84,5 +86,23 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
+    }
+
+    #mask-wrapper {
+        mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 60%,
+            transparent 70%
+        );
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 60%,
+            transparent 70%
+        );
+        pointer-events: none;
     }
 </style>
