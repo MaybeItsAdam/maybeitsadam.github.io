@@ -89,7 +89,14 @@
             transparent,
             black 10%,
             black 60%,
-            transparent 75%
+            transparent 80%
+        );
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 10%,
+            black 60%,
+            transparent 80%
         );
         pointer-events: none; /* Ensure it doesn't interfere with the content */
     }
