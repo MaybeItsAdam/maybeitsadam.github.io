@@ -54,10 +54,12 @@
     }
 </script>
 
-<div id="cwrapper" style="--chwidth: {finalName.length}ch">
-    {#each nameList as name}
-        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
-    {/each}
+<div id="main">
+    <div id="cwrapper" style="--chwidth: {finalName.length}ch">
+        {#each nameList as name}
+            <div class="mover" style="--shift: {shiftVal}px">{name}</div>
+        {/each}
+    </div>
 </div>
 
 <style>
@@ -66,9 +68,16 @@
         position: relative;
         flex-direction: column;
         align-content: flex-start;
-        height: 1em;
+        height: 2em;
         overflow: visible;
-        width: var(--chwidth);
+        width: 600px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            black 10%,
+            black 60%,
+            transparent 80%
+        );
     }
 
     .mover {
@@ -76,28 +85,5 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
-    }
-
-    #cwrapper::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        width: 600px;
-        height: 2em; /* Adjust to the height you want for the masking */
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 10%,
-            black 60%,
-            transparent 80%
-        );
-        -webkit-mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 10%,
-            black 60%,
-            transparent 80%
-        );
-        pointer-events: none; /* Ensure it doesn't interfere with the content */
     }
 </style>
