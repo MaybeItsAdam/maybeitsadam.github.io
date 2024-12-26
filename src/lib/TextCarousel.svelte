@@ -40,7 +40,7 @@
     }
 
     .carousel {
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         position: absolute;
         animation: moveText 15s infinite;
