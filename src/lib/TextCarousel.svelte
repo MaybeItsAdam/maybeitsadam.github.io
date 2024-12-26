@@ -1,11 +1,12 @@
-<script lang="ts">
+<script>
     import Carousel from "svelte-light-carousel";
+
     const slides = Array.from({ length: 10 }, (_, i) => ({
         title: `${i + 1}`,
     }));
 
-    export let names: string[] = ["tetsname", "tof", "bimef"];
-    export let finalName: string = "";
+    export let names = ["tetsname", "tof", "bimef"];
+    export let finalName = "";
     names.push(finalName);
     let currentIndex = 0;
     const transitionSpeed = 500; // Time for the transition of each name in milliseconds
@@ -21,6 +22,6 @@
     }, delay);
 </script>
 
-<Carousel {slides}>
+<Carousel axis="y" {slides}>
     <div slot="slide" let:slide>{slide.title}</div>
 </Carousel>
