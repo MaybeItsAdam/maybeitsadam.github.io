@@ -35,13 +35,15 @@
             } else {
                 clearInterval(shiftInterval);
             }
-        }, 800); // Interval time (in milliseconds)
+        }, 800);
     }
 
     $effect(() => {
         const mover = document.querySelector(".mover");
-        moverHeight = mover!.getBoundingClientRect().height;
-        console.log(moverHeight);
+        if (mover) {
+            moverHeight = mover.getBoundingClientRect().height; // Get the height of the first .mover element
+            console.log(moverHeight);
+        }
     });
 </script>
 
