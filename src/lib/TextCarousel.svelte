@@ -81,7 +81,6 @@
     }
 
     #mask {
-        display: inline;
         mask-image: linear-gradient(
             to bottom,
             transparent,
