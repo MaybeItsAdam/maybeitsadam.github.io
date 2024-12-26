@@ -38,13 +38,13 @@
             if (isAnimating) {
                 currentIndex = (currentIndex + 1) % names.length;
             }
-        }, 50); // Fast spinning effect
+        }, 150); // Slower spinning effect
 
         setTimeout(() => {
             clearInterval(interval);
             isAnimating = false;
             currentIndex = finalIndex; // Settle on the final name
-        }, 2000); // Total animation duration
+        }, 5000); // Longer total animation duration for a smoother effect
     }
 
     onMount(() => {
@@ -79,7 +79,7 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.5s ease-in-out; /* Slower, smoother transition */
     }
 
     /* Individual names */
@@ -104,7 +104,7 @@
         top: 0;
         background: linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0.9),
             rgba(255, 255, 255, 0)
         );
     }
@@ -113,7 +113,7 @@
         bottom: 0;
         background: linear-gradient(
             to top,
-            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0.9),
             rgba(255, 255, 255, 0)
         );
     }
