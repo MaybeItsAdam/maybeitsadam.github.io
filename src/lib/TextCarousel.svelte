@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { afterUpdate, onMount } from "svelte";
+    import { onMount } from "svelte";
 
     let allNames: string[];
-    let nameList: string[] = [];
-    export let finalName: string = "";
+    let nameList: string[] = $state([]);
+    let { finalName } = $props();
 
     const generateNames = async (numOfNames: number): Promise<string[]> => {
         const response = await fetch("/names.txt");
@@ -22,7 +22,7 @@
     });
 
     let currentShift = 0;
-    let shiftVal = 0;
+    let shiftVal = $state(0);
     let shiftInterval: number;
 
     let moverHeight: number;
@@ -38,9 +38,10 @@
         }, 800); // Interval time (in milliseconds)
     }
 
-    afterUpdate(() => {
+    $effect(() => {
         const mover = document.querySelector(".mover");
         moverHeight = mover!.getBoundingClientRect().height;
+        console.log(moverHeight);
     });
 </script>
 
