@@ -90,5 +90,6 @@
     #main {
         display: inline;
         width: var(--chwidth);
+        overflow: visible;
     }
 </style>
