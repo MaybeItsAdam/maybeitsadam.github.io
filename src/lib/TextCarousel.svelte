@@ -1,11 +1,10 @@
 <script lang="ts">
-    export let names: string[] = ["testname43", "bim", "tofs"];
-    export let finalName: string = "Adam";
-    names.push(finalName);
+    export let names: string[] = [];
     let currentIndex = 0;
-    const delay = 1000;
+    const transitionSpeed = 1500; // Time for the transition of each name in milliseconds
+    const delay = 3000; // Time between name transitions
 
-    // Update index to cycle through names
+    // Cycle through names and stop at the last one
     setInterval(() => {
         if (currentIndex < names.length - 1) {
             currentIndex += 1;
@@ -16,13 +15,13 @@
 </script>
 
 <div class="carousel-wrapper">
-    <div class="carousel">
+    <div class="carousel" style="transform: translateX(-{currentIndex * 100}%)">
         {#each names as name, index}
             <div
                 class="carousel-item {index === currentIndex
                     ? 'carousel-item-visible'
                     : ''}"
-                style="width: max-content; white-space: nowrap;"
+                style="width: fit-content;"
             >
                 {name}
             </div>
@@ -33,21 +32,24 @@
 
 <style>
     .carousel-wrapper {
-        width: 4ch;
+        width: fit-content; /* Will take the width of the last name only */
+        height: 30px; /* Fixed height */
         overflow: hidden;
         position: relative;
-        display: inline;
+        display: inline-block; /* Keeps it inline with other elements */
     }
 
     .carousel {
-        display: inline-flex;
-        flex-direction: column;
+        display: flex;
         position: absolute;
-        animation: moveText 15s infinite;
+        flex-direction: row; /* Names in a row, not stack */
+        transition: transform 1s ease-in-out; /* Smooth transition */
     }
 
     .carousel-item {
+        min-width: 100%; /* Each item takes up the entire width */
         opacity: 0;
+        white-space: nowrap;
         transition: opacity 0.5s ease;
     }
 
@@ -62,19 +64,10 @@
         right: 0;
         bottom: 0;
         background: linear-gradient(
-            to bottom,
+            to right,
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0)
         );
         pointer-events: none;
-    }
-
-    @keyframes moveText {
-        0% {
-            transform: translateY(0);
-        }
-        100% {
-            transform: translateY(-100%);
-        }
     }
 </style>
