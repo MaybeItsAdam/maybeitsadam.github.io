@@ -54,13 +54,14 @@
     }
 </script>
 
-<div id="mask">
-    <div id="cwrapper" style="--chwidth: {finalName.length}ch">
-        {#each nameList as name}
-            <div class="mover" style="--shift: {shiftVal}px">{name}</div>
-        {/each}
-    </div>
+<!-- <div id="mask"> -->
+<div id="cwrapper" style="--chwidth: {finalName.length}ch">
+    {#each nameList as name}
+        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
+    {/each}
 </div>
+
+<!-- </div> -->
 
 <style>
     #cwrapper {
@@ -69,9 +70,8 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        overflow-inline: visible;
         overflow: visible;
-        width: 100%;
+        width: var(--chwidth);
     }
 
     .mover {
@@ -99,8 +99,5 @@
         );
         pointer-events: none;
         height: 2em;
-        width: var(--chwidth);
-        overflow-x: visible;
-        overflow-inline: visible;
     }
 </style>
