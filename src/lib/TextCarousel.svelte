@@ -76,8 +76,6 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
-        width: var(--chwidth);
-        overflow-x: visible;
     }
 
     #mask {
