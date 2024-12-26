@@ -27,7 +27,6 @@
     let shiftInterval: number;
 
     function startShifting() {
-        // Start shifting the div every x milliseconds
         shiftInterval = setInterval(() => {
             if (currentShift < nameList.length) {
                 currentShift++;
@@ -37,6 +36,8 @@
             }
         }, 800); // Interval time (in milliseconds, e.g., 300ms)
     }
+
+    startShifting();
 </script>
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
