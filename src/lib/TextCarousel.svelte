@@ -43,7 +43,9 @@
                 return;
             }
 
-            currentIndex = (currentIndex + 1) % names.length;
+            if (currentIndex !== finalIndex) {
+                currentIndex = (currentIndex + 1) % names.length;
+            }
             step++;
         }, intervalTime);
     }
