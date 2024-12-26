@@ -82,7 +82,7 @@
         content: "";
         position: absolute;
         left: 0;
-        width: 100%;
+        width: 600px;
         height: 2em; /* Adjust to the height you want for the masking */
         background: linear-gradient(
             to bottom,
