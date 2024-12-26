@@ -54,12 +54,10 @@
     }
 </script>
 
-<div id="mask">
-    <div id="cwrapper" style="--chwidth: {finalName.length}ch">
-        {#each nameList as name}
-            <div class="mover" style="--shift: {shiftVal}px">{name}</div>
-        {/each}
-    </div>
+<div id="cwrapper" style="--chwidth: {finalName.length}ch">
+    {#each nameList as name}
+        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
+    {/each}
 </div>
 
 <style>
@@ -78,24 +76,5 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
-    }
-
-    #mask {
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 80%,
-            transparent 90%
-        );
-        -webkit-mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 80%,
-            transparent 90%
-        );
-        pointer-events: none;
-        height: 2em;
     }
 </style>
