@@ -64,10 +64,8 @@
 
 <style>
     #cwrapper {
-        display: inline-flex;
+        display: inline;
         position: relative;
-        flex-direction: column;
-        align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
     }
@@ -80,6 +78,9 @@
 
     #mask {
         position: absolute;
+        flex-direction: column;
+        align-content: flex-start;
+        display: flex;
         top: 0;
         left: 0;
         right: -100%;
