@@ -70,7 +70,7 @@
         align-content: flex-start;
         height: 1em;
         overflow: visible;
-        width: 100%;
+        width: var(--chwidth);
     }
 
     .mover {
@@ -88,14 +88,14 @@
             transparent,
             black 15%,
             black 65%,
-            transparent
+            transparent 80%
         );
         -webkit-mask-image: linear-gradient(
             to bottom,
             transparent,
             black 15%,
             black 65%,
-            transparent
+            transparent 80%
         );
         pointer-events: none;
         height: 2em;
