@@ -70,24 +70,13 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15% /* black 85%,
-            transparent */
-        );
-        -webkit-mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15% /* black 85%,
-            transparent */
-        );
     }
 
     .mover {
         position: relative;
         transition: top 0.3s ease;
         top: var(--shift);
+        transform: translateY(1em);
     }
 
     #mask {
