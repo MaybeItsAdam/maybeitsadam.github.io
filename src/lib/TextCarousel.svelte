@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let names: string[] = [];
+    export let names: string[] = ["tetsname", "tof", "bimef"];
+    export let finalName: string = "";
+    names.push(finalName);
     let currentIndex = 0;
     const transitionSpeed = 1500; // Time for the transition of each name in milliseconds
     const delay = 3000; // Time between name transitions
