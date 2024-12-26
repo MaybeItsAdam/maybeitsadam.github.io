@@ -83,6 +83,7 @@
 
     #mask {
         display: inline-block;
+        overflow: visible;
         width: var(--chwidth);
         mask-image: linear-gradient(
             to bottom,
