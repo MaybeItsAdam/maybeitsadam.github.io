@@ -28,7 +28,7 @@
     function startShifting() {
         shiftInterval = setInterval(() => {
             if (currentShift < nameList.length - 1) {
-                shiftVal -= 7;
+                shiftVal -= 1;
                 currentShift++;
             } else {
                 clearInterval(shiftInterval);
