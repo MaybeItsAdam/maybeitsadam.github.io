@@ -75,15 +75,12 @@
 
     .mover {
         position: relative;
-        align-self: flex-start;
         transition: top 0.3s ease;
         top: var(--shift);
     }
 
     #mask {
-        display: inline-flex;
-        right: -100%;
-        bottom: -2em;
+        display: inline-block;
         mask-image: linear-gradient(
             to bottom,
             transparent,
@@ -99,6 +96,5 @@
             transparent
         );
         pointer-events: none;
-        align-content: flex-start;
     }
 </style>
