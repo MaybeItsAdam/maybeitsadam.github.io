@@ -3,7 +3,6 @@
 
     export let finalName = "";
     export let numRandomNames = 3;
-    export let trigger = "load"; // 'load' or 'manual'
 
     let names: string[] = [];
     let currentName = "";
@@ -37,55 +36,52 @@
 
     onMount(async () => {
         await loadNames();
-        if (trigger === "load") animate();
+        animate();
     });
 </script>
 
-<div class="relative overflow-hidden w-fit">
-    <div class="relative px-4 py-2">
-        <div
-            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent"
-        ></div>
-        <span class="relative transition-opacity duration-300">
-            {currentName || finalName}
-        </span>
-    </div>
-</div>
+<span class="carousel">
+    <span class="mask">
+        <span class="text" class:animate={isAnimating}
+            >{currentName || finalName}</span
+        >
+    </span>
+</span>
 
 <style>
-    .relative {
+    .carousel {
+        display: inline-block;
         position: relative;
     }
-    .absolute {
-        position: absolute;
-    }
-    .inset-0 {
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-    .overflow-hidden {
+    .mask {
+        display: inline-block;
+        position: relative;
         overflow: hidden;
+        -webkit-mask-image: linear-gradient(
+            90deg,
+            transparent 0%,
+            black 25%,
+            black 75%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            90deg,
+            transparent 0%,
+            black 25%,
+            black 75%,
+            transparent 100%
+        );
     }
-    .w-fit {
-        width: fit-content;
+    .text {
+        display: inline-block;
+        transform: translateY(0);
+        opacity: 1;
     }
-    .px-4 {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .py-2 {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-    .bg-gradient-to-r {
-        background: linear-gradient(to right, #ffffff00, #ffffff, #ffffff00);
-    }
-    .transition-opacity {
-        transition: opacity 300ms;
-    }
-    .duration-300 {
-        transition-duration: 300ms;
+    .text.animate {
+        transition:
+            transform 0.3s ease-in-out,
+            opacity 0.3s ease-in-out;
+        transform: translateY(-100%);
+        opacity: 0;
     }
 </style>
