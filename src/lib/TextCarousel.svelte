@@ -75,6 +75,7 @@
 
     .mover {
         position: relative;
+        align-self: flex-start;
         transition: top 0.3s ease;
         top: var(--shift);
     }
