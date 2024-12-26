@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
 
     let allNames: string[];
     let nameList: string[] = [];
@@ -25,21 +25,28 @@
     let shiftVal = 0;
     let shiftInterval: number;
 
+    let moverHeight: number;
+
     function startShifting() {
         shiftInterval = setInterval(() => {
             if (currentShift < nameList.length - 1) {
-                shiftVal -= 1;
+                shiftVal -= moverHeight;
                 currentShift++;
             } else {
                 clearInterval(shiftInterval);
             }
         }, 800); // Interval time (in milliseconds)
     }
+
+    afterUpdate(() => {
+        const mover = document.querySelector(".mover");
+        moverHeight = mover!.getBoundingClientRect().height;
+    });
 </script>
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
     {#each nameList as name}
-        <div class="mover" style="--shift: {shiftVal}em">{name}</div>
+        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
     {/each}
 </div>
 
@@ -50,7 +57,7 @@
         flex-direction: column;
         align-content: flex-start;
         width: var(--chwidth);
-        height: 1ch;
+        height: 1em;
         padding: 0;
         margin: 0;
     }
