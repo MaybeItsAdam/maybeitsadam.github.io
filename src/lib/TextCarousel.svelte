@@ -76,7 +76,7 @@
             transparent,
             black 10%,
             black 60%,
-            transparent 75%
+            transparent 70%
         );
     }
 
@@ -88,7 +88,7 @@
     }
 
     #main {
-        display: inline;
+        display: inline-block;
         width: var(--chwidth);
         overflow: visible;
     }
