@@ -1,27 +1,41 @@
-<script>
-    import Carousel from "svelte-light-carousel";
+<script lang="ts">
+    import { onMount } from "svelte";
 
-    const slides = Array.from({ length: 10 }, (_, i) => ({
-        title: `${i + 1}`,
-    }));
+    let allNames: string[];
+    let nameList: string[];
+    export let finalName: string = "";
 
-    export let names = ["tetsname", "tof", "bimef"];
-    export let finalName = "";
-    names.push(finalName);
     let currentIndex = 0;
     const transitionSpeed = 500; // Time for the transition of each name in milliseconds
     const delay = 2000; // Time between name transitions
 
-    // Cycle through names and stop at the last one
-    setInterval(() => {
-        if (currentIndex < names.length - 1) {
-            currentIndex += 1;
-        } else {
-            currentIndex = names.length - 1; // Stop at the last item
-        }
-    }, delay);
+    const generateNames = async (numOfNames: number): Promise<string[]> => {
+        const response = await fetch("/names.txt");
+        const text = await response.text();
+        allNames = text.split("\n");
+
+        let shuffled = [...allNames].sort(() => Math.random() - 0.5);
+
+        return shuffled.slice(0, numOfNames);
+    };
+
+    onMount(async () => {
+        nameList = await generateNames(3);
+        nameList.push(finalName);
+    });
 </script>
 
-<Carousel axis="y" {slides}>
-    <div slot="slide" let:slide>{slide.title}</div>
-</Carousel>
+<div id="cwrapper">
+    {#each nameList as name}
+        <div>{name}</div>
+    {/each}
+</div>
+
+<style>
+    #cwrapper {
+        display: inline-flex;
+        flex-direction: column;
+        align-content: flex-start;
+        width: 4ch;
+    }
+</style>
