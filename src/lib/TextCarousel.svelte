@@ -54,8 +54,8 @@
     }
 </script>
 
-<div id="main">
-    <div id="cwrapper" style="--chwidth: {finalName.length}ch">
+<div id="main" style="--chwidth: {finalName.length}ch">
+    <div id="cwrapper">
         {#each nameList as name}
             <div class="mover" style="--shift: {shiftVal}px">{name}</div>
         {/each}
@@ -75,7 +75,7 @@
             to bottom,
             transparent,
             black 10%,
-            black 55%,
+            black 60%,
             transparent 75%
         );
     }
