@@ -1,0 +1,1 @@
+import{a,t as e}from"../chunks/disclose-version.B3Op_ofy.js";import"../chunks/legacy.D3ghbj0G.js";import{n as p}from"../chunks/runtime.CuGp2yT8.js";var m=e("<h1>projects</h1> <p>sometimes i make stuff</p>",1);function f(t){var o=m();p(2),a(t,o)}export{f as component};
