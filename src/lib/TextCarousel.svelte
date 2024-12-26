@@ -99,6 +99,6 @@
         pointer-events: none;
         width: auto;
         overflow: visible;
-        bottom: -1em;
+        height: 2em;
     }
 </style>
