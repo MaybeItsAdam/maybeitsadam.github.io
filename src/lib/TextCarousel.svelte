@@ -37,5 +37,6 @@
         flex-direction: column;
         align-content: flex-start;
         width: 4ch;
+        height: 1ch;
     }
 </style>
