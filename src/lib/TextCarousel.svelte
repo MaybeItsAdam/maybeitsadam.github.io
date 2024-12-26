@@ -51,6 +51,8 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1ch;
+        padding: 0;
+        margin: 0;
     }
 
     .mover {
