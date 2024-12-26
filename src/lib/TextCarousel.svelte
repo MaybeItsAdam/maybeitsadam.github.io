@@ -70,6 +70,7 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
+        overflow: visible;
     }
 
     .mover {
@@ -80,7 +81,6 @@
 
     #mask {
         display: inline-block;
-        right: 50%;
         mask-image: linear-gradient(
             to bottom,
             transparent,
