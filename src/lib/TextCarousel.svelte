@@ -80,9 +80,9 @@
 
     #mask {
         position: absolute;
-        bottom: -1em;
+        top: -1em;
         left: 0;
-        right: 0;
+        right: -100%;
         mask-image: linear-gradient(
             to bottom,
             transparent,
