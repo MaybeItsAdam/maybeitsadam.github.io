@@ -64,8 +64,10 @@
 
 <style>
     #cwrapper {
-        display: inline;
+        display: inline-flex;
         position: relative;
+        flex-direction: column;
+        align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
     }
@@ -78,27 +80,8 @@
 
     #mask {
         position: absolute;
-        flex-direction: column;
-        align-content: flex-start;
-        display: flex;
-        top: 0;
         left: 0;
         right: -100%;
-        bottom: -50%;
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 85%,
-            transparent
-        );
-        -webkit-mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 85%,
-            transparent
-        );
         pointer-events: none;
     }
 </style>
