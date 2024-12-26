@@ -80,7 +80,7 @@
     }
 
     #mask {
-        display: inline-block;
+        display: inline;
         right: -100%;
         bottom: -2em;
         mask-image: linear-gradient(
@@ -98,5 +98,6 @@
             transparent
         );
         pointer-events: none;
+        align-content: start;
     }
 </style>
