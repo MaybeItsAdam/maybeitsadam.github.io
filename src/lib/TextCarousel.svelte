@@ -70,7 +70,6 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
-        right: -100%;
     }
 
     .mover {
