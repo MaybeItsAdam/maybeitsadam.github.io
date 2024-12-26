@@ -2,7 +2,7 @@
     import TextCarousel from "$lib/TextCarousel.svelte";
 </script>
 
-<div id="main"><p>MaybeIts<TextCarousel /></p></div>
+<div id="main"><p>MaybeIts<TextCarousel name="Adam" /></p></div>
 
 <style>
     @import url("https://fonts.cdnfonts.com/css/cascadia-code");
