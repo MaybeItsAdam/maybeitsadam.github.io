@@ -69,7 +69,9 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        width: 500px;
+        overflow-inline: visible;
+        overflow: visible;
+        width: 100%;
     }
 
     .mover {
@@ -98,5 +100,7 @@
         pointer-events: none;
         height: 2em;
         width: var(--chwidth);
+        overflow-x: visible;
+        overflow-inline: visible;
     }
 </style>
