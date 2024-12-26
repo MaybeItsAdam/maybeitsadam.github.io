@@ -77,6 +77,7 @@
         position: relative;
         transition: top 0.3s ease;
         top: var(--shift);
+        white-space: nowrap;
     }
 
     #mask {
