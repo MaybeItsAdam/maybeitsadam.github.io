@@ -77,4 +77,22 @@
         top: var(--shift);
         white-space: nowrap;
     }
+
+    .mover::before {
+        content: "";
+        position: absolute;
+        top: -0.5em; /* Extends the mask above */
+        left: 0;
+        right: 0;
+        bottom: -0.5em; /* Extends the mask below */
+        background: rgba(255, 255, 255, 0.8); /* Adjust transparency */
+        mask-image: linear-gradient(
+            to top,
+            transparent,
+            rgba(255, 255, 255, 1),
+            transparent
+        ); /* Gradual fade */
+        pointer-events: none;
+        z-index: 1;
+    }
 </style>
