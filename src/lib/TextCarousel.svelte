@@ -55,11 +55,9 @@
 </script>
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
-    <div id="mask">
-        {#each nameList as name}
-            <div class="mover" style="--shift: {shiftVal}px">{name}</div>
-        {/each}
-    </div>
+    {#each nameList as name}
+        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
+    {/each}
 </div>
 
 <style>
@@ -69,34 +67,8 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        overflow: visible; /* Allow content to overflow horizontally */
-        width: var(--chwidth); /* Logical width for the overall container */
-    }
-
-    #mask {
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 60%,
-            transparent 70%
-        );
-        -webkit-mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 60%,
-            transparent 70%
-        );
-        pointer-events: none; /* Ensure mask does not interfere with content */
-        height: 100%;
-        width: 100%;
+        overflow: visible;
+        width: var(--chwidth);
     }
 
     .mover {
@@ -104,5 +76,22 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
+    }
+
+    #cwrapper::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2em; /* Adjust to the height you want for the masking */
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 80%,
+            transparent 90%
+        );
+        pointer-events: none; /* Ensure it doesn't interfere with the content */
     }
 </style>
