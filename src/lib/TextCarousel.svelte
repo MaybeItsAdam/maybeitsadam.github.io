@@ -86,15 +86,15 @@
             to bottom,
             transparent,
             black 15%,
-            black 60%,
-            transparent 70%
+            black 80%,
+            transparent 90%
         );
         -webkit-mask-image: linear-gradient(
             to bottom,
             transparent,
             black 15%,
-            black 60%,
-            transparent 70%
+            black 80%,
+            transparent 90%
         );
         pointer-events: none;
         height: 2em;
