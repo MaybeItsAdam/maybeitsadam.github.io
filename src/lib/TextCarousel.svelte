@@ -76,12 +76,10 @@
         position: relative;
         transition: top 0.3s ease;
         top: var(--shift);
-        transform: translateY(1em);
     }
 
     #mask {
         position: absolute;
-        top: -1em;
         bottom: -1em;
         left: 0;
         right: 0;
