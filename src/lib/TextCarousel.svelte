@@ -80,6 +80,8 @@
 
     #mask {
         display: inline-block;
+        right: -100%;
+        bottom: -1em;
         mask-image: linear-gradient(
             to bottom,
             transparent,
