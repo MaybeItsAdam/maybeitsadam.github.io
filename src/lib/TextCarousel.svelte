@@ -1,118 +1,102 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    export let name: string = ""; // Final name to settle on
+    export let finalName: string = "";
 
     let names: string[] = [];
-    let currentIndex: number = 0; // Tracks the currently displayed name
-    let finalIndex: number = 0; // Index of the final name
-    let isAnimating: boolean = true; // Tracks if the animation is active
-    let animationDuration: number = 5000; // Total animation duration in ms
-    let intervalTime: number = 150; // Time between name changes in ms
+    let currentName: string = "";
+    let index: number = 0;
+    let isSettling: boolean = false;
 
-    async function loadNames(): Promise<void> {
+    // Function to load names from a text file
+    onMount(async () => {
         try {
             const response = await fetch("/names.txt");
             const text = await response.text();
-            const loadedNames = text
+            names = text
                 .split("\n")
-                .map((n) => n.trim())
-                .filter((n) => n);
+                .map((name) => name.trim())
+                .filter((name) => name);
 
-            if (name && !loadedNames.includes(name)) {
-                loadedNames.push(name);
-            }
-
-            names = loadedNames;
-            finalIndex = names.indexOf(name);
-            startAnimation();
-        } catch (err) {
-            console.error("Error loading names:", err);
+            // Start the carousel
+            startCarousel();
+        } catch (error) {
+            console.error("Error loading names:", error);
         }
-    }
-
-    function startAnimation(): void {
-        const steps = Math.ceil(animationDuration / intervalTime);
-        let step = 0;
-
-        const interval = setInterval(() => {
-            if (step >= steps) {
-                clearInterval(interval);
-                isAnimating = false;
-                currentIndex = finalIndex; // Precisely align with the final name
-                return;
-            }
-
-            if (currentIndex !== finalIndex) {
-                currentIndex = (currentIndex + 1) % names.length;
-            }
-            step++;
-        }, intervalTime);
-    }
-
-    onMount(() => {
-        loadNames();
     });
+
+    // Function to start the carousel
+    function startCarousel() {
+        let interval = setInterval(
+            () => {
+                if (isSettling) {
+                    currentName = finalName;
+                } else {
+                    currentName = names[index];
+                    index = (index + 1) % names.length;
+                }
+            },
+            isSettling ? 100 : 50,
+        );
+
+        setTimeout(() => {
+            isSettling = true;
+            clearInterval(interval);
+            setTimeout(startCarousel, 2000); // Delay before starting to settle
+        }, 3000); // Adjust timing for how long names cycle fast
+    }
 </script>
 
-<div class="carousel-mask">
-    <div
-        class="carousel-container"
-        style="transform: translateY(calc(-100% * {currentIndex}));"
-    >
-        {#each names as name}
-            <div class="carousel-name">{name}</div>
-        {/each}
-    </div>
+<div class="carousel">
+    <div class="mask"></div>
+    <div class="name">{currentName}</div>
 </div>
 
 <style>
-    .carousel-mask {
-        display: inline-block;
+    .carousel {
         position: relative;
         overflow: hidden;
-        height: 1em; /* Matches the line height of the final name */
-        width: max-content;
+        display: inline-block;
     }
 
-    .carousel-container {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transition: transform 5s ease-in-out;
-    }
-
-    .carousel-name {
-        text-align: left;
+    .name {
+        position: absolute;
+        bottom: 0;
+        animation:
+            slideIn 0.5s forwards,
+            settle 2s 3s forwards;
         white-space: nowrap;
     }
 
-    .carousel-mask::before,
-    .carousel-mask::after {
-        content: "";
+    .mask {
         position: absolute;
+        top: 0;
         left: 0;
         right: 0;
-        height: 50%;
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    .carousel-mask::before {
-        top: 0;
-        background: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.9),
-            rgba(255, 255, 255, 0)
-        );
-    }
-
-    .carousel-mask::after {
         bottom: 0;
         background: linear-gradient(
             to top,
-            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 1),
             rgba(255, 255, 255, 0)
         );
+        pointer-events: none;
+    }
+
+    @keyframes slideIn {
+        0% {
+            transform: translateY(100%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes settle {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 </style>
