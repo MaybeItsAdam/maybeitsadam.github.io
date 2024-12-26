@@ -4,11 +4,11 @@
     export let name: string = ""; // Final name to settle on
 
     let names: string[] = [];
-    let currentIndex: number = 0; // Current index during animation
+    let currentIndex: number = 0; // Tracks the currently displayed name
     let finalIndex: number = 0; // Index of the final name
-    let isSettled: boolean = false; // Tracks if animation has finished
+    let isAnimating: boolean = true; // Tracks if the animation is active
 
-    // Fetch names from the text file
+    // Fetch names and initialize animation
     async function loadNames(): Promise<void> {
         try {
             const response = await fetch("/names.txt");
@@ -18,15 +18,13 @@
                 .map((n) => n.trim())
                 .filter((n) => n);
 
-            // Add the provided name to the list and find its index
-            if (name) {
-                if (!loadedNames.includes(name)) {
-                    loadedNames.push(name);
-                }
-                finalIndex = loadedNames.indexOf(name);
+            // Add the final name if it's not already included
+            if (name && !loadedNames.includes(name)) {
+                loadedNames.push(name);
             }
 
             names = loadedNames;
+            finalIndex = names.indexOf(name);
 
             // Start animation
             startAnimation();
@@ -37,15 +35,14 @@
 
     function startAnimation(): void {
         const interval = setInterval(() => {
-            if (!isSettled) {
-                currentIndex = (currentIndex + 1) % names.length; // Loop through names
+            if (isAnimating) {
+                currentIndex = (currentIndex + 1) % names.length;
             }
-        }, 50); // Fast animation interval
+        }, 50); // Fast spinning effect
 
-        // Settle on the final name
         setTimeout(() => {
             clearInterval(interval);
-            isSettled = true;
+            isAnimating = false;
             currentIndex = finalIndex; // Settle on the final name
         }, 2000); // Total animation duration
     }
@@ -68,38 +65,39 @@
 </div>
 
 <style>
+    /* The mask ensures the animation remains constrained to the final name's height */
     .carousel-mask {
         display: inline-block;
         position: relative;
-        overflow: hidden; /* Prevent names outside the mask from showing */
-        height: 1em; /* Match the parent's line height */
-        width: max-content; /* Allow only the final name width to be considered */
+        overflow: hidden;
+        height: 1em; /* Matches the line height of the final name */
+        width: max-content; /* Ensure the width only fits the final name */
     }
 
+    /* The container holds all names and animates vertically */
     .carousel-container {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease-in-out; /* Smooth transition for the carousel */
+        position: relative;
+        transition: transform 0.3s ease-in-out;
     }
 
+    /* Individual names */
     .carousel-name {
         text-align: center;
-        opacity: 0.8; /* Slightly transparent for the mask effect */
-        transition: opacity 0.3s ease;
+        white-space: nowrap; /* Prevent names from breaking lines */
     }
 
+    /* Fade effect for top and bottom of the mask */
     .carousel-mask::before,
     .carousel-mask::after {
         content: "";
         position: absolute;
         left: 0;
         right: 0;
-        height: 50%; /* Fade effect covers top and bottom */
-        pointer-events: none;
+        height: 50%; /* Half the height of the mask */
         z-index: 1;
+        pointer-events: none;
     }
 
     .carousel-mask::before {
