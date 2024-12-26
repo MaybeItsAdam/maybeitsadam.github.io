@@ -55,11 +55,11 @@
 </script>
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
-    <div id="mask">
-        {#each nameList as name}
-            <div class="mover" style="--shift: {shiftVal}px">{name}</div>
-        {/each}
-    </div>
+    <!-- <div id="mask"> -->
+    {#each nameList as name}
+        <div class="mover" style="--shift: {shiftVal}px">{name}</div>
+    {/each}
+    <!-- </div> -->
 </div>
 
 <style>
