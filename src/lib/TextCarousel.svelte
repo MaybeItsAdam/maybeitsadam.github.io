@@ -21,13 +21,13 @@
         startShifting(); // Call startShifting after the names are ready
     });
 
-    let currentShift = 0; // Tracks the current shift count
-    let shiftVal = 0; // Tracks the current top offset
+    let currentShift = 0;
+    let shiftVal = 0;
     let shiftInterval: number;
 
     function startShifting() {
         shiftInterval = setInterval(() => {
-            if (currentShift < nameList.length) {
+            if (currentShift < nameList.length - 1) {
                 shiftVal -= 2;
                 currentShift++;
             } else {
@@ -54,6 +54,8 @@
     }
 
     .mover {
+        padding: 0;
+        margin: 0;
         position: relative;
         transition: top 0.3s ease;
         top: var(--shift);
