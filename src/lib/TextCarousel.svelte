@@ -71,7 +71,14 @@
         height: 2em;
         overflow: visible;
         width: 600px;
-        background: linear-gradient(
+        mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 10%,
+            black 60%,
+            transparent 70%
+        );
+        -webkit-mask-image: linear-gradient(
             to bottom,
             transparent,
             black 10%,
