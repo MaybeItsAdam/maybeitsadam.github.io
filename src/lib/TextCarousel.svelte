@@ -97,6 +97,7 @@
             transparent
         );
         pointer-events: none;
+        width: auto;
         overflow: visible;
     }
 </style>
