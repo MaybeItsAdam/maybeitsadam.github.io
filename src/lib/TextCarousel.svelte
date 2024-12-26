@@ -69,12 +69,13 @@
         height: 1em;
         overflow: visible;
         width: var(--chwidth);
+        right: 100%;
         mask-image: linear-gradient(
             to bottom,
             transparent,
             black 15%,
-            black 60%,
-            transparent 70%
+            black 85%,
+            transparent
         );
     }
 
