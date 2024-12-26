@@ -16,7 +16,7 @@
     };
 
     onMount(async () => {
-        nameList = await generateNames(3);
+        nameList = await generateNames(4);
         nameList.push(finalName);
         await measureBoxHeight();
         startShifting();
