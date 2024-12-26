@@ -1,11 +1,11 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    export let name: string = ""; // Ending name prop
+    export let name: string = ""; // Final name to settle on
 
     let names: string[] = [];
+    let currentIndex: number = 0; // Current index during animation
     let finalIndex: number = 0; // Index of the final name
-    let currentIndex: number = 0; // Current index for animation
     let isSettled: boolean = false; // Tracks if animation has finished
 
     // Fetch names from the text file
@@ -28,7 +28,7 @@
 
             names = loadedNames;
 
-            // Start fast animation
+            // Start animation
             startAnimation();
         } catch (err) {
             console.error("Error loading names:", err);
@@ -42,12 +42,12 @@
             }
         }, 50); // Fast animation interval
 
-        // Slow down and settle on the final name
+        // Settle on the final name
         setTimeout(() => {
             clearInterval(interval);
             isSettled = true;
             currentIndex = finalIndex; // Settle on the final name
-        }, 2000); // Total animation time
+        }, 2000); // Total animation duration
     }
 
     onMount(() => {
@@ -55,20 +55,68 @@
     });
 </script>
 
-<!-- Render names inline -->
-<span class="carousel-container">
-    <span class="name">{names[currentIndex]}</span>
-</span>
+<!-- Carousel Wrapper -->
+<div class="carousel-mask">
+    <div
+        class="carousel-container"
+        style="transform: translateY(calc(-100% * {currentIndex}));"
+    >
+        {#each names as name}
+            <div class="carousel-name">{name}</div>
+        {/each}
+    </div>
+</div>
 
 <style>
-    .carousel-container {
+    .carousel-mask {
         display: inline-block;
         position: relative;
-        white-space: nowrap; /* Prevent line breaks */
+        overflow: hidden; /* Prevent names outside the mask from showing */
+        height: 1em; /* Match the parent's line height */
+        width: max-content; /* Allow only the final name width to be considered */
     }
 
-    .name {
-        display: inline;
-        transition: transform 0.2s ease; /* Smooth transition for settling effect */
+    .carousel-container {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease-in-out; /* Smooth transition for the carousel */
+    }
+
+    .carousel-name {
+        text-align: center;
+        opacity: 0.8; /* Slightly transparent for the mask effect */
+        transition: opacity 0.3s ease;
+    }
+
+    .carousel-mask::before,
+    .carousel-mask::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 50%; /* Fade effect covers top and bottom */
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .carousel-mask::before {
+        top: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0)
+        );
+    }
+
+    .carousel-mask::after {
+        bottom: 0;
+        background: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0)
+        );
     }
 </style>
