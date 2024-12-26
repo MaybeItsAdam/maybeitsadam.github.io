@@ -28,7 +28,7 @@
     function startShifting() {
         shiftInterval = setInterval(() => {
             if (currentShift < nameList.length) {
-                shiftVal -= currentShift + 1; // Shift by 1ch, 2ch, etc.
+                shiftVal--; // Shift by 1ch, 2ch, etc.
                 currentShift++;
             } else {
                 clearInterval(shiftInterval);
@@ -37,7 +37,7 @@
     }
 </script>
 
-<div id="cwrapper" style="--chwidth: {finalName.length + 1}ch">
+<div id="cwrapper" style="--chwidth: {finalName.length}ch">
     {#each nameList as name}
         <div class="mover" style="--shift: {shiftVal}ch">{name}</div>
     {/each}
@@ -50,7 +50,7 @@
         flex-direction: column;
         align-content: flex-start;
         width: var(--chwidth);
-        height: auto;
+        height: 1ch;
     }
 
     .mover {
