@@ -70,6 +70,8 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
+        padding: 0;
+        margin: 0;
     }
 
     .mover {
@@ -83,5 +85,7 @@
         left: 0;
         right: -100%;
         pointer-events: none;
+        padding: 0;
+        margin: 0;
     }
 </style>
