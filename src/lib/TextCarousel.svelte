@@ -53,20 +53,19 @@
     .carousel {
         display: inline-block;
         position: relative;
+        width: 4ch;
     }
     .mask {
         display: inline-block;
         position: relative;
         overflow: hidden;
         -webkit-mask-image: linear-gradient(
-            90deg,
             transparent 0%,
             black 20%,
             black 80%,
             transparent 100%
         );
         mask-image: linear-gradient(
-            90deg,
             transparent 0%,
             black 20%,
             black 80%,
@@ -80,8 +79,8 @@
     }
     .text.animate {
         transition:
-            transform 0.3s ease-in-out,
-            opacity 0.3s ease-in-out;
+            transform 0.5s ease-in-out,
+            opacity 0.5s ease-in-out;
         transform: translateX(-100%);
         opacity: 0;
     }
