@@ -69,6 +69,8 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
+        width: var(--chwidth);
+        overflow: visible;
     }
 
     .mover {
