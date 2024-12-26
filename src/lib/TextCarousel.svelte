@@ -19,7 +19,7 @@
         nameList = await generateNames(3);
         nameList.push(finalName);
         await measureBoxHeight();
-        startShifting(); // Call startShifting after the names are ready
+        startShifting();
     });
 
     let currentShift = 0;
@@ -68,6 +68,20 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
+        mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 40%,
+            black 60%,
+            transparent
+        );
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 40%,
+            black 60%,
+            transparent
+        );
     }
 
     .mover {
