@@ -70,6 +70,7 @@
         align-content: flex-start;
         height: 1em;
         overflow: visible;
+        width: 100%;
     }
 
     .mover {
@@ -93,11 +94,10 @@
             to bottom,
             transparent,
             black 15%,
-            black 85%,
+            black 65%,
             transparent
         );
         pointer-events: none;
-        /* overflow: visible; */
         height: 2em;
     }
 </style>
