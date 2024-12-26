@@ -28,7 +28,7 @@
     function startShifting() {
         shiftInterval = setInterval(() => {
             if (currentShift < nameList.length - 1) {
-                shiftVal -= 2;
+                shiftVal -= 7;
                 currentShift++;
             } else {
                 clearInterval(shiftInterval);
@@ -39,7 +39,7 @@
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
     {#each nameList as name}
-        <div class="mover" style="--shift: {shiftVal}ch">{name}</div>
+        <div class="mover" style="--shift: {shiftVal}em">{name}</div>
     {/each}
 </div>
 
