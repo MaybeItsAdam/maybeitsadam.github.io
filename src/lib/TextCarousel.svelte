@@ -25,7 +25,7 @@
     });
 </script>
 
-<div id="cwrapper">
+<div id="cwrapper" style="--chwidth: {finalName.length}ch">
     {#each nameList as name}
         <div>{name}</div>
     {/each}
@@ -36,7 +36,7 @@
         display: inline-flex;
         flex-direction: column;
         align-content: flex-start;
-        width: 4ch;
+        width: var(--chwidth);
         height: 1ch;
     }
 </style>
