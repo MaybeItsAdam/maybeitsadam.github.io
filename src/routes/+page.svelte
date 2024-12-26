@@ -15,6 +15,6 @@
     }
     p {
         font-family: "Cascadia Code", sans-serif;
-        font-size: 7em;
+        font-size: 6em;
     }
 </style>

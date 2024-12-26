@@ -33,12 +33,12 @@
             setTimeout(() => {
                 const mover = document.querySelector(".mover");
                 if (mover) {
-                    moverHeight = mover.getBoundingClientRect().height; // Get the height of the first .mover element
+                    moverHeight = mover.getBoundingClientRect().height;
                 } else {
-                    moverHeight = 0; // Fallback height
+                    moverHeight = 0;
                 }
                 resolve();
-            }, 0); // Delay to ensure the DOM is updated
+            }, 0);
         });
     }
 
@@ -54,7 +54,7 @@
     }
 </script>
 
-<div id="cwrapper" style="--chwidth: {9}ch">
+<div id="cwrapper" style="--chwidth: {finalName.length}ch">
     {#each nameList as name}
         <div class="mover" style="--shift: {shiftVal}px">{name}</div>
     {/each}
