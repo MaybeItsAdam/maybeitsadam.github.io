@@ -84,12 +84,12 @@
         left: 0;
         width: 600px;
         height: 2em; /* Adjust to the height you want for the masking */
-        background: linear-gradient(
+        mask-image: linear-gradient(
             to bottom,
             transparent,
-            black 15%,
-            black 80%,
-            transparent 90%
+            black 10%,
+            black 60%,
+            transparent 75%
         );
         pointer-events: none; /* Ensure it doesn't interfere with the content */
     }
