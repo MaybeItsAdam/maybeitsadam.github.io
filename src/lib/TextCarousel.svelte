@@ -69,8 +69,7 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        width: var(--chwidth);
-        overflow: visible;
+        width: 200px;
     }
 
     .mover {
@@ -98,5 +97,6 @@
         );
         pointer-events: none;
         height: 2em;
+        width: var(--chwidth);
     }
 </style>
