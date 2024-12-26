@@ -18,7 +18,6 @@
                 .map((name) => name.trim())
                 .filter((name) => name);
 
-            // Start the carousel
             startCarousel();
         } catch (error) {
             console.error("Error loading names:", error);
@@ -57,6 +56,7 @@
         position: relative;
         overflow: hidden;
         display: inline-block;
+        height: 50px; /* Set a fixed height for visibility */
     }
 
     .name {
