@@ -75,8 +75,8 @@
             to bottom,
             transparent,
             black 10%,
-            black 60%,
-            transparent 80%
+            black 55%,
+            transparent 75%
         );
     }
 
@@ -85,5 +85,10 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
+    }
+
+    #main {
+        display: inline;
+        width: var(--chwidth);
     }
 </style>
