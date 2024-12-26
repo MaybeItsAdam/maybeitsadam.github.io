@@ -68,7 +68,6 @@
         position: relative;
         flex-direction: column;
         align-content: flex-start;
-        width: var(--chwidth);
         height: 1em;
         overflow: visible;
     }
@@ -82,11 +81,12 @@
 
     #mask {
         display: inline-block;
+        width: var(--chwidth);
         mask-image: linear-gradient(
             to bottom,
             transparent,
             black 15%,
-            black 85%,
+            black 65%,
             transparent
         );
         -webkit-mask-image: linear-gradient(
@@ -97,7 +97,6 @@
             transparent
         );
         pointer-events: none;
-        width: auto;
         overflow: visible;
         height: 2em;
     }
