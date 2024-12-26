@@ -33,7 +33,7 @@
 
 <style>
     .carousel-wrapper {
-        width: fit-content;
+        width: 4ch;
         overflow: hidden;
         position: relative;
         display: inline;
