@@ -69,8 +69,6 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        overflow: visible;
-        width: var(--chwidth);
     }
 
     .mover {
@@ -78,26 +76,25 @@
         transition: top 0.3s ease;
         top: var(--shift);
         white-space: nowrap;
-        overflow: visible;
+        width: var(--chwidth);
+        overflow-x: visible;
     }
 
     #mask {
         display: inline-block;
-        overflow: visible;
-        width: var(--chwidth);
         mask-image: linear-gradient(
             to bottom,
             transparent,
             black 15%,
-            black 65%,
-            transparent 80%
+            black 60%,
+            transparent 70%
         );
         -webkit-mask-image: linear-gradient(
             to bottom,
             transparent,
             black 15%,
-            black 65%,
-            transparent 80%
+            black 60%,
+            transparent 70%
         );
         pointer-events: none;
         height: 2em;
