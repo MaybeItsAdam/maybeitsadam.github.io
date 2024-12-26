@@ -77,7 +77,7 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        transition: transform 0.3s ease-in-out;
+        transition: transform 5s ease-in-out;
     }
 
     .carousel-name {
