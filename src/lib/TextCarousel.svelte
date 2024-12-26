@@ -54,7 +54,7 @@
     }
 </script>
 
-<div id="cwrapper" style="--chwidth: {finalName.length}ch">
+<div id="cwrapper" style="--chwidth: {9}ch">
     {#each nameList as name}
         <div class="mover" style="--shift: {shiftVal}px">{name}</div>
     {/each}
@@ -68,13 +68,9 @@
         align-content: flex-start;
         width: var(--chwidth);
         height: 1em;
-        padding: 0;
-        margin: 0;
     }
 
     .mover {
-        padding: 0;
-        margin: 0;
         position: relative;
         transition: top 0.3s ease;
         top: var(--shift);
