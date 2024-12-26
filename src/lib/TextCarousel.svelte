@@ -34,8 +34,6 @@
             }
         }, 800); // Interval time (in milliseconds, e.g., 300ms)
     }
-
-    startShifting();
 </script>
 
 <div id="cwrapper" style="--chwidth: {finalName.length}ch">
@@ -43,6 +41,8 @@
         <div class="mover" style="--shift: {shiftVal}ch">{name}</div>
     {/each}
 </div>
+
+<button on:click={startShifting}>Start Shifting</button>
 
 <style>
     #cwrapper {
