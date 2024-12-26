@@ -69,7 +69,7 @@
         flex-direction: column;
         align-content: flex-start;
         height: 1em;
-        width: 200px;
+        width: 500px;
     }
 
     .mover {
