@@ -1,110 +1,91 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    export let finalName: string = "John Doe"; // Default name to settle on
-    export let numNames: number = 3; // Default number of names to choose
-    export let nameFile: string = "/names.txt"; // Path to names.txt in the static folder
+    export let finalName = "";
+    export let numRandomNames = 3;
+    export let trigger = "load"; // 'load' or 'manual'
 
     let names: string[] = [];
-    let displayedNames: string[] = [];
-    let currentName: string = "";
-    let transitionDuration: number = 500; // Time for each name to be displayed in ms
-    let carouselInterval: number;
+    let currentName = "";
+    let isAnimating = false;
 
-    // Fetch names from the txt file
-    const fetchNames = async (): Promise<void> => {
-        const response = await fetch(nameFile);
+    async function loadNames() {
+        const response = await fetch("names.txt");
         const text = await response.text();
-        names = text
-            .split("\n")
-            .map((name) => name.trim())
-            .filter((name) => name.length > 0);
-    };
+        names = text.split("\n").filter((name) => name.trim());
+    }
 
-    // Randomly select a set of names
-    const getRandomNames = (count: number): string[] => {
-        const shuffled = [...names].sort(() => Math.random() - 0.5);
-        return shuffled.slice(0, count);
-    };
+    function getRandomNames() {
+        return Array(numRandomNames)
+            .fill(0)
+            .map(() => names[Math.floor(Math.random() * names.length)]);
+    }
 
-    // Start the carousel
-    const startCarousel = (): void => {
-        let index = 0;
-        displayedNames = getRandomNames(numNames);
-        currentName = displayedNames[index];
-        carouselInterval = setInterval(() => {
-            index = (index + 1) % displayedNames.length;
-            currentName = displayedNames[index];
-            // When cycling through, apply exit effect to the name that's being replaced
-            displayedNames = [
-                ...displayedNames.slice(1),
-                displayedNames[index],
-            ]; // Reorder names for smooth cycling
-        }, transitionDuration);
-    };
+    async function animate() {
+        if (isAnimating) return;
+        isAnimating = true;
 
-    // Stop carousel when final name is reached
-    const settleOnFinalName = (): void => {
-        clearInterval(carouselInterval);
+        const namesToShow = getRandomNames();
+        for (const name of namesToShow) {
+            currentName = name;
+            await new Promise((resolve) => setTimeout(resolve, 500));
+        }
+
         currentName = finalName;
-    };
+        isAnimating = false;
+    }
 
-    // Trigger carousel on mount
     onMount(async () => {
-        await fetchNames();
-        startCarousel();
-        setTimeout(
-            settleOnFinalName,
-            transitionDuration * displayedNames.length,
-        );
+        await loadNames();
+        if (trigger === "load") animate();
     });
 </script>
 
-<div class="carousel-container">
-    {#each displayedNames as name, i (name)}
+<div class="relative overflow-hidden w-fit">
+    <div class="relative px-4 py-2">
         <div
-            class="carousel-name {i === 0
-                ? 'enter'
-                : i === displayedNames.length - 1
-                  ? 'show'
-                  : 'exit'}"
-            style="transition-duration: {transitionDuration}ms"
-        >
-            {name}
-        </div>
-    {/each}
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent"
+        ></div>
+        <span class="relative transition-opacity duration-300">
+            {currentName || finalName}
+        </span>
+    </div>
 </div>
 
 <style>
-    .carousel-container {
-        display: inline-block;
+    .relative {
         position: relative;
-        height: 3rem; /* Adjust based on font size */
+    }
+    .absolute {
+        position: absolute;
+    }
+    .inset-0 {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .overflow-hidden {
         overflow: hidden;
     }
-
-    .carousel-name {
-        font-size: 3rem;
-        opacity: 0;
-        transition:
-            opacity 0.5s ease-in-out,
-            transform 0.5s ease-in-out;
-        position: absolute;
-        white-space: nowrap;
+    .w-fit {
+        width: fit-content;
     }
-
-    .show {
-        opacity: 1;
-        transform: translateY(0);
+    .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
-
-    .enter {
-        opacity: 0;
-        transform: translateY(100%);
+    .py-2 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
-
-    .exit {
-        opacity: 0;
-        transform: translateY(-100%);
+    .bg-gradient-to-r {
+        background: linear-gradient(to right, #ffffff00, #ffffff, #ffffff00);
+    }
+    .transition-opacity {
+        transition: opacity 300ms;
+    }
+    .duration-300 {
+        transition-duration: 300ms;
     }
 </style>
