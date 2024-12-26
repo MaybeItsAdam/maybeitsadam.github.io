@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
 
     let allNames: string[];
-    let nameList: string[];
+    let nameList: string[] = [];
     export let finalName: string = "";
 
     const generateNames = async (numOfNames: number): Promise<string[]> => {
@@ -18,6 +18,7 @@
     onMount(async () => {
         nameList = await generateNames(3);
         nameList.push(finalName);
+        startShifting(); // Call startShifting after the names are ready
     });
 
     let currentShift = 0; // Tracks the current shift count
@@ -27,22 +28,20 @@
     function startShifting() {
         shiftInterval = setInterval(() => {
             if (currentShift < nameList.length) {
+                shiftVal -= currentShift + 1; // Shift by 1ch, 2ch, etc.
                 currentShift++;
-                shiftVal -= currentShift;
             } else {
                 clearInterval(shiftInterval);
             }
-        }, 800); // Interval time (in milliseconds, e.g., 300ms)
+        }, 800); // Interval time (in milliseconds)
     }
 </script>
 
-<div id="cwrapper" style="--chwidth: {finalName.length}ch">
+<div id="cwrapper" style="--chwidth: {finalName.length + 1}ch">
     {#each nameList as name}
         <div class="mover" style="--shift: {shiftVal}ch">{name}</div>
     {/each}
 </div>
-
-<button on:click={startShifting}>Start Shifting</button>
 
 <style>
     #cwrapper {
@@ -51,11 +50,12 @@
         flex-direction: column;
         align-content: flex-start;
         width: var(--chwidth);
-        height: 1ch;
+        height: auto;
     }
+
     .mover {
         position: relative;
         transition: top 0.3s ease;
-        top: var(--shiftVal);
+        top: var(--shift);
     }
 </style>
