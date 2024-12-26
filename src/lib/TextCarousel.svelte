@@ -5,8 +5,6 @@
     let nameList: string[];
     export let finalName: string = "";
 
-    let ismoving = false;
-
     const generateNames = async (numOfNames: number): Promise<string[]> => {
         const response = await fetch("/names.txt");
         const text = await response.text();
@@ -57,7 +55,7 @@
     }
     .mover {
         position: relative;
-        transition: up 0.3s ease;
-        up: var(--shiftVal);
+        transition: top 0.3s ease;
+        top: var(--shiftVal);
     }
 </style>
